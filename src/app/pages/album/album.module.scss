@@ -201,7 +201,7 @@
 
   &::before {
     content: "";
-    background-image: url("../images/br-arrow.png");
+    background-image: url("../../images/br-arrow.png");
     width: 200px;
     height: 200px;
     position: absolute;
@@ -214,7 +214,7 @@
 
   &::after {
     content: "";
-    background-image: url("../images/br-arrow.png");
+    background-image: url("../../images/br-arrow.png");
     width: 200px;
     height: 200px;
     position: absolute;
@@ -232,7 +232,7 @@
     border-radius: 50%;
     color: #fff;
     font-family: StyleScript;
-    background-image: url("../images/br.jpeg");
+    background-image: url("../../images/br.jpeg");
     background-repeat: no-repeat;
     background-color: transparent;
     outline: none;

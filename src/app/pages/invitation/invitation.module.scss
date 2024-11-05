@@ -22,6 +22,15 @@
   margin-bottom: 24px;
 }
 
+.description {
+  text-align: center;
+  font-size: 1.8rem;
+  color: #07f6be;
+  margin-bottom: 24px;
+  line-height: 1.5;
+  font-style: italic;
+}
+
 .input {
   max-width: 400px;
   width: 100%;
@@ -34,11 +43,12 @@
   font-size: 1.4rem;
   border: 0.5px solid black;
   background-color: #bebbbb88;
+  // color: #07f6be;
   outline: none;
   border-radius: 12px;
 
   &:focus {
-    background-color: #bebbbb;
+    background-color: #bebbbb44;
   }
 }
 

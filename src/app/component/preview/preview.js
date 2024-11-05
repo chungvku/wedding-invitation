@@ -14,7 +14,6 @@ import "swiper/css";
 import "swiper/css/bundle";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 const cx = classNames.bind(styles);
 
 function Preview({ data, onClose, index }) {
