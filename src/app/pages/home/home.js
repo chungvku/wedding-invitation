@@ -14,6 +14,7 @@ import Footer from "@/app/component/footer";
 import Final from "@/app/component/final";
 import Game from "@/app/component/game";
 import { MultiContext } from "@/app/context";
+import Disk from "@/app/component/disk";
 
 const cx = classNames.bind(styles);
 export default function Home() {
@@ -46,8 +47,8 @@ export default function Home() {
   }, [isOpen]);
   return (
     <div className={cx("wrapper")}>
+      <Disk />
       <Intro handleOpen={handleOpenInvitation} name={name} />
-
       {isOpen && (
         <>
           <Profile />
