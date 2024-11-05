@@ -23,7 +23,7 @@ function Gift({ onClose }) {
 
       <div className={cx("bank")}>
         <img
-          src={images.qr.default.src}
+          src={images.qr2.default.src}
           className={cx("qr-code")}
           style={{
             transform: isInView ? "translateX(0)" : "translateX(-150px)",

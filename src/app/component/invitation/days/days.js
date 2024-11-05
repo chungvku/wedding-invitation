@@ -4,7 +4,7 @@ import { daysInMonth } from "@/app/configs/ui";
 
 const cx = classNames.bind(styles);
 
-function Days({ title = "Month", activeDay = 12 }) {
+function Days({ title = "Month", activeDay = 19 }) {
   return (
     <div className={cx("wrapper")}>
       <h2 className={cx("title")}>{title}</h2>

@@ -25,13 +25,13 @@ function Intro({ handleOpen, name = "You" }) {
             <div className={cx("img-box")}>
               <img
                 className={cx("img")}
-                src="https://res.cloudinary.com/do6sozxbo/image/upload/v1730383598/wedding5/intro.jpg"
+                src="https://res.cloudinary.com/do6sozxbo/image/upload/f_auto,q_auto/v1/wedding5/e3"
               />
             </div>
           </div>
           <div className={cx("right")}>
             <div className={cx("text-box")}>
-              <p className={cx("date")}>Thứ năm, Ngày 12, Tháng 12 năm 2024 </p>
+              <p className={cx("date")}>Thứ ba , Ngày 19 Tháng 11 năm 2024 </p>
               <div className={cx("name-box")}>
                 <h3 className={cx("name")} style={{ marginTop: "-40px" }}>
                   T

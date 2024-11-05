@@ -30,7 +30,7 @@ function Album({ name }) {
       <div className={cx("header")}>
         <div className={cx("side-img-wrap")} ref={viewRef}>
           <img
-            src={album[4]}
+            src={album[2]}
             className={cx("side-img")}
             style={{
               transform: isInView
@@ -50,7 +50,7 @@ function Album({ name }) {
           <div className={cx("main-img-wrap")}>
             <img
               className={cx("main-img")}
-              src={album[1]}
+              src={album[5]}
               style={{
                 transform: isInView
                   ? "translateX(0) rotate(0deg)"

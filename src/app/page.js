@@ -6,7 +6,7 @@ export async function generateMetadata({ params, searchParams }, parent) {
   const name = searchParams.name || "You";
   console.log(name);
   return {
-    title: `Thiệp cưới của Hùng | Kính Mời ${name}`,
+    title: `Thiệp cưới của Hùng-Thuý | Kính Mời ${name}`,
     openGraph: {
       images: [
         "https://res.cloudinary.com/do6sozxbo/image/upload/v1730558395/wedding5/land.jpg",

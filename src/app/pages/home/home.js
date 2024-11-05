@@ -3,7 +3,7 @@ import classNames from "classnames/bind";
 import styles from "./home.module.scss";
 import Invitation from "@/app/component/invitation";
 import { useSearchParams } from "next/navigation";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Profile from "@/app/component/profile";
 import GuestBook from "@/app/component/guestbook";
 import Album from "@/app/component/album";
