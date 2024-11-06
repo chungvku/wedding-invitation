@@ -24,8 +24,8 @@ const profile = [
   {
     title: "bride",
     name: "Trần Thị Thúy",
-    avatar: `${link}/bride1`,
-    images: [`${link}/bride3`, `${link}/bride2`],
+    avatar: `${link}/bride6`,
+    images: [`${link}/bride4`, `${link}/bride7`],
   },
   {
     title: "groom",
@@ -213,7 +213,7 @@ const albumC = [
     imgs: [
       {
         id: 13,
-        img: `${link}/e2`,
+        img: `${link}/e15`,
       },
     ],
   },
@@ -222,6 +222,22 @@ const albumC = [
       {
         id: 14,
         img: `${link}/e14`,
+      },
+    ],
+  },
+  {
+    imgs: [
+      {
+        id: 15,
+        img: `${link}/e16`,
+      },
+    ],
+  },
+  {
+    imgs: [
+      {
+        id: 16,
+        img: `${link}/e17`,
       },
     ],
   },

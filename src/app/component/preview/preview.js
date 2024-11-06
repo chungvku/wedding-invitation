@@ -138,6 +138,16 @@ function Preview({ data, onClose, index }) {
               <img className={cx("img")} alt={"image"} src={imgs[13]?.img} />
             </div>
           </SwiperSlide>{" "}
+          <SwiperSlide>
+            <div className={cx("img-wrapper")}>
+              <img className={cx("img")} alt={"image"} src={imgs[14]?.img} />
+            </div>
+          </SwiperSlide>{" "}
+          <SwiperSlide>
+            <div className={cx("img-wrapper")}>
+              <img className={cx("img")} alt={"image"} src={imgs[15]?.img} />
+            </div>
+          </SwiperSlide>{" "}
         </Swiper>
         <div className={cx("icon-box", "next-icon")} onClick={handleNext}>
           <GoChevronRight className={cx("icon")} />

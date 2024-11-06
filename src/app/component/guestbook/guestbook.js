@@ -165,6 +165,11 @@ function GuestBook({ fName }) {
           />
           <label htmlFor="or">Không biết</label>
         </div>
+        <p className={cx("help-text")}>
+          Nếu không thể gửi lời nhắn bằng trình duyệt trình duyệt messeger , hãy
+          thử mở trình duyệt bên ngoài (Chome, Safia,...){" "}
+        </p>
+
         <button
           ref={ref}
           className={cx("btn")}
