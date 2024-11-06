@@ -3,9 +3,11 @@ import classNames from "classnames/bind";
 import styles from "./invitation.module.scss";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { copyTextToClipboard, useDebounce } from "@/app/helper";
+import { useDebounce } from "@/app/helper";
 import { useSearchParams } from "next/navigation";
 import Confetti from "react-dom-confetti";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+
 const cx = classNames.bind(styles);
 
 const config = {
@@ -28,6 +30,8 @@ function Invitation() {
   const [isCopied, setIsCopied] = useState(false);
   const searchParams = useSearchParams();
 
+  const path = `${window.location.origin}/?name=`;
+
   useEffect(() => {
     // Kiểm tra xem searchParams có hợp lệ không
     if (searchParams.size > 0) {
@@ -40,8 +44,6 @@ function Invitation() {
     if (name.trim() === "") {
       setError("Vui lòng nhập tên người mà bạn muốn mời ");
     } else {
-      const path = `${window.location.origin}/?name=${encodeURI(name)}`;
-      copyTextToClipboard(path);
       setName("");
       setIsCopied(true);
     }
@@ -76,18 +78,20 @@ function Invitation() {
           }}
         />
         {error && <p className={cx("err")}>{error}</p>}
-        <motion.button
-          className={cx("btn")}
-          onClick={handleCopy}
-          whilehover={{
-            scale: 1.1,
-          }}
-          whiletap={{
-            scale: 0.9,
-          }}
-        >
-          {isCopied ? "Đã sao chép" : "Sao Chép"}
-        </motion.button>
+        <CopyToClipboard text={path + name} onCopy={handleCopy}>
+          <motion.button
+            className={cx("btn")}
+            onClick={handleCopy}
+            whilehover={{
+              scale: 1.1,
+            }}
+            whiletap={{
+              scale: 0.9,
+            }}
+          >
+            {isCopied ? "Đã sao chép" : "Sao Chép"}
+          </motion.button>
+        </CopyToClipboard>
       </div>
       <Confetti active={isCopied} config={config} />
     </div>
