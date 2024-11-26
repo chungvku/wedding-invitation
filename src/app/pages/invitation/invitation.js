@@ -50,7 +50,9 @@ function Invitation() {
   return (
     <div className={cx("wrapper")}>
       <div className={cx("container")}>
-        <h2 className={cx("title")}>Nhập tên người bạn muốn gửi thiệp</h2>
+        <h2 className={cx("title")}>
+          BÁO HỈ | Nhập tên người bạn muốn gửi thiệp{" "}
+        </h2>
         <p className={cx("description")}>
           Nhập tên người bạn muốn mời - nhấn SAO CHÉP - Vào tin nhắn của của
           người bạn muốn gửi - giữ nhấn DÁN (PASTE) - GỬI
