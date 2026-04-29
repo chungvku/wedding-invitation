@@ -149,7 +149,7 @@ const timerSection = {
   weddingTime: {
     year: 2026,
     day: 22,
-    month: 05,
+    month: 5,
   },
 };
 
