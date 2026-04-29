@@ -147,9 +147,9 @@ const giftSection = {
 // timer
 const timerSection = {
   weddingTime: {
-    year: 2024,
+    year: 2026,
     day: 22,
-    month: 12,
+    month: 5,
   },
 };
 
