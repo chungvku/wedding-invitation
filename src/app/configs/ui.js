@@ -122,7 +122,7 @@ const albumSection = {
 
 const guestbookSection = {
   image: `${cdnLink}/e5`,
-  time: "12/12/2024",
+  time: "29/05/2026",
 };
 
 // gift section
@@ -147,9 +147,9 @@ const giftSection = {
 // timer
 const timerSection = {
   weddingTime: {
-    year: 2024,
+    year: 2026,
     day: 22,
-    month: 12,
+    month: 05,
   },
 };
 
