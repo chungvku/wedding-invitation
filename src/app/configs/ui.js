@@ -25,8 +25,8 @@ const configConfetti = {
 const weddingInfo = [
   {
     time: {
-      date: "22/05",
-      year: "2026",
+      date: "22/12",
+      year: "2024",
       time: "11:00",
       full: "Chủ nhật, Ngày 22 Tháng 12 năm 2024",
     },
@@ -122,7 +122,7 @@ const albumSection = {
 
 const guestbookSection = {
   image: `${cdnLink}/e5`,
-  time: "29/05/2026",
+  time: "12/12/2024",
 };
 
 // gift section
@@ -147,9 +147,9 @@ const giftSection = {
 // timer
 const timerSection = {
   weddingTime: {
-    year: 2026,
+    year: 2024,
     day: 22,
-    month: 5,
+    month: 12,
   },
 };
 
