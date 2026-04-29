@@ -35,6 +35,9 @@ export default function AdminPage() {
     "https://res.cloudinary.com/do6sozxbo/image/upload/f_auto,q_auto/v1/wedding5/e8"
   ]);
 
+  // Track unsaved changes
+  const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
+
   useEffect(() => {
     const sorted = [...wishArray].sort((a, b) => b.createdAt - a.createdAt);
     setWishes(sorted);
@@ -52,6 +55,13 @@ export default function AdminPage() {
       setAlbumImages(config.albumImages || albumImages);
     }
   }, []);
+
+  // Mark changes when user edits
+  const markUnsavedChanges = () => {
+    if (!hasUnsavedChanges) {
+      setHasUnsavedChanges(true);
+    }
+  };
 
   const stats = useMemo(() => {
     return {
@@ -102,6 +112,7 @@ export default function AdminPage() {
       albumImages,
     };
     localStorage.setItem('weddingConfig', JSON.stringify(config));
+    setHasUnsavedChanges(false);
     alert('Đã lưu cấu hình đám cưới!');
   };
 
@@ -154,11 +165,41 @@ export default function AdminPage() {
     const newImage = prompt('Nhập URL hình ảnh mới:');
     if (newImage && newImage.trim()) {
       setAlbumImages([...albumImages, newImage.trim()]);
+      markUnsavedChanges();
     }
   };
 
   const removeAlbumImage = (index) => {
     setAlbumImages(albumImages.filter((_, i) => i !== index));
+    markUnsavedChanges();
+  };
+
+  const handleImageUpload = (event) => {
+    const files = Array.from(event.target.files);
+    const newImages = [];
+
+    files.forEach(file => {
+      if (file.type.startsWith('image/')) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          newImages.push(e.target.result);
+          if (newImages.length === files.length) {
+            setAlbumImages([...albumImages, ...newImages]);
+            markUnsavedChanges();
+          }
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+  };
+
+  const addMultipleImages = () => {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.multiple = true;
+    input.accept = 'image/*';
+    input.onchange = handleImageUpload;
+    input.click();
   };
 
   return (
@@ -198,7 +239,10 @@ export default function AdminPage() {
             <input
               className={cx("input")}
               value={brideName}
-              onChange={(e) => setBrideName(e.target.value)}
+              onChange={(e) => {
+                setBrideName(e.target.value);
+                markUnsavedChanges();
+              }}
               placeholder="Nhập tên cô dâu"
             />
             
@@ -206,7 +250,10 @@ export default function AdminPage() {
             <input
               className={cx("input")}
               value={groomName}
-              onChange={(e) => setGroomName(e.target.value)}
+              onChange={(e) => {
+                setGroomName(e.target.value);
+                markUnsavedChanges();
+              }}
               placeholder="Nhập tên chú rể"
             />
             
@@ -214,7 +261,10 @@ export default function AdminPage() {
             <input
               className={cx("input")}
               value={weddingDate}
-              onChange={(e) => setWeddingDate(e.target.value)}
+              onChange={(e) => {
+                setWeddingDate(e.target.value);
+                markUnsavedChanges();
+              }}
               placeholder="22/05/2026"
             />
             
@@ -222,7 +272,10 @@ export default function AdminPage() {
             <input
               className={cx("input")}
               value={weddingTime}
-              onChange={(e) => setWeddingTime(e.target.value)}
+              onChange={(e) => {
+                setWeddingTime(e.target.value);
+                markUnsavedChanges();
+              }}
               placeholder="11:00"
             />
             
@@ -230,7 +283,10 @@ export default function AdminPage() {
             <textarea
               className={cx("textarea")}
               value={weddingAddress}
-              onChange={(e) => setWeddingAddress(e.target.value)}
+              onChange={(e) => {
+                setWeddingAddress(e.target.value);
+                markUnsavedChanges();
+              }}
               placeholder="Nhập địa chỉ cưới"
               rows={3}
             />
@@ -239,14 +295,17 @@ export default function AdminPage() {
             <textarea
               className={cx("textarea")}
               value={googleMapsAddress}
-              onChange={(e) => setGoogleMapsAddress(e.target.value)}
+              onChange={(e) => {
+                setGoogleMapsAddress(e.target.value);
+                markUnsavedChanges();
+              }}
               placeholder="Nhập địa chỉ cho Google Maps"
               rows={3}
             />
             
             <div className={cx("buttonGroup")}>
               <button className={cx("button")} onClick={saveWeddingConfig}>
-                Lưu cấu hình
+                Lưu cấu hình {hasUnsavedChanges && '💾'}
               </button>
               <button className={cx("button", "secondary")} onClick={exportConfig}>
                 Export cấu hình
@@ -260,6 +319,12 @@ export default function AdminPage() {
                   style={{ display: 'none' }}
                 />
               </label>
+              <button 
+                className={cx("button", "link")}
+                onClick={() => window.open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(googleMapsAddress)}`, '_blank')}
+              >
+                Test Google Maps 🗺️
+              </button>
             </div>
           </div>
         </div>
@@ -267,22 +332,31 @@ export default function AdminPage() {
         <div className={cx("panelSection")}> 
           <h2 className={cx("sectionTitle")}>Quản lý album hình ảnh</h2>
           <div className={cx("albumManager")}>
-            <button className={cx("button")} onClick={addAlbumImage}>
-              Thêm hình ảnh
-            </button>
+            <div className={cx("albumActions")}>
+              <button className={cx("button")} onClick={addAlbumImage}>
+                ➕ Thêm URL ảnh
+              </button>
+              <button className={cx("button", "secondary")} onClick={addMultipleImages}>
+                📁 Upload nhiều ảnh
+              </button>
+            </div>
             <div className={cx("imageGrid")}>
               {albumImages.map((image, index) => (
                 <div key={index} className={cx("imageItem")}>
                   <img src={image} alt={`Album ${index + 1}`} className={cx("thumbnail")} />
-                  <button 
+                  <button
                     className={cx("removeButton")}
                     onClick={() => removeAlbumImage(index)}
+                    title="Xóa ảnh"
                   >
-                    Xóa
+                    ×
                   </button>
                 </div>
               ))}
             </div>
+            {albumImages.length === 0 && (
+              <p className={cx("empty")}>Chưa có hình ảnh nào. Hãy thêm ảnh để hiển thị album!</p>
+            )}
           </div>
         </div>
       </section>
